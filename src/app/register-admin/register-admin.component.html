@@ -1,0 +1,72 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <h3 class="text-center mb-4">Register Admin</h3>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label>Name</label>
+          <input
+            class="form-control"
+            formControlName="name"
+            [class.is-invalid]="submitted && name?.invalid"
+          />
+          <div class="invalid-feedback" *ngIf="submitted && name?.errors">
+            Name is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Username</label>
+          <input
+            class="form-control"
+            formControlName="username"
+            [class.is-invalid]="submitted && username?.invalid"
+          />
+          <div class="invalid-feedback" *ngIf="submitted && username?.errors">
+            Username is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Email</label>
+          <input
+            class="form-control"
+            formControlName="email"
+            [class.is-invalid]="submitted && email?.invalid"
+          />
+          <div class="invalid-feedback" *ngIf="submitted && email?.errors">
+            A valid email is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            [class.is-invalid]="submitted && password?.invalid"
+          />
+          <div class="invalid-feedback" *ngIf="submitted && password?.errors">
+            Password is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Role</label>
+          <input
+            class="form-control"
+            formControlName="role"
+            [class.is-invalid]="submitted && role?.invalid"
+          />
+          <div class="invalid-feedback" *ngIf="submitted && role?.errors">
+            Role is required.
+          </div>
+        </div>
+
+        <button class="btn btn-dark w-100" type="submit">Register Admin</button>
+      </form>
+    </div>
+  </div>
+</div>

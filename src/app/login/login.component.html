@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <h3 class="text-center mb-4">Login</h3>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label>Username</label>
+          <input class="form-control" formControlName="username" />
+          <div *ngIf="submitted && username?.errors" class="text-danger small mt-1">
+            <div *ngIf="username?.hasError('required')">Username is required</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName="password" />
+          <div *ngIf="submitted && password?.errors" class="text-danger small mt-1">
+            <div *ngIf="password?.hasError('required')">Password is required</div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary w-100" type="submit">Login</button>
+      </form>
+
+ <button
+  class="btn btn-outline-danger w-100 mt-3"
+  (click)="router.navigate(['/register-user'])"
+  type="button"
+>
+  Register User
+</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <h3>Register User</h3>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label>Name</label>
+      <input class="form-control" formControlName="name" />
+      <div *ngIf="submitted && name?.errors" class="text-danger small mt-1">
+        <div *ngIf="name?.hasError('required')">Name is required</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Username</label>
+      <input class="form-control" formControlName="username" />
+      <div *ngIf="submitted && username?.errors" class="text-danger small mt-1">
+        <div *ngIf="username?.hasError('required')">Username is required</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Email</label>
+      <input class="form-control" formControlName="email" />
+      <div *ngIf="submitted && email?.errors" class="text-danger small mt-1">
+        <div *ngIf="email?.hasError('required')">Email is required</div>
+        <div *ngIf="email?.hasError('email')">Please enter a valid email address</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password" />
+      <div *ngIf="submitted && password?.errors" class="text-danger small mt-1">
+        <div *ngIf="password?.hasError('required')">Password is required</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Role</label>
+      <input class="form-control" formControlName="role" readonly />
+    </div>
+
+    <button class="btn btn-success w-100" type="submit">Register</button>
+  </form>
+</div>
