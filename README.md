@@ -1,27 +1,35 @@
-# Secureportal
+# Angular JWT Authentication App (User/Admin Role-Based)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+This is a secure login and registration frontend built with **Angular** that supports:
+- User and Admin registration
+- JWT-based authentication
+- Role-based dashboard redirection
+- Protected routes using Angular Guards
+- Clean UI using Bootstrap
+- Form validation with Reactive Forms
 
-## Development server
+> 🔐 This frontend is built to connect with a Spring Boot backend microservice (secured with JWT & role-based access).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- 🔐 JWT token-based login
+- ✅ Role-based routing (Admin/User)
+- 🚫 Guarded routes using `authGuard`
+- 📄 Register User & Admin
+- 📬 Token auto-injection in header
+- 🔓 Logout (clears token)
+- ⚠️ Form validation with error messages
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🧰 Technologies Used
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Angular 16+
+- Bootstrap 5
+- Reactive Forms
+- Angular Routing
+- JWT Token Parsing
+- HTTP Interceptor
+- Angular Guards
