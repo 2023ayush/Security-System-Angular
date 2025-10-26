@@ -10,12 +10,9 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  loading = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private auth: AuthService,
-    public router: Router
-  ) {
+  constructor(private fb: FormBuilder, private auth: AuthService, public router: Router) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -26,38 +23,44 @@ export class LoginComponent implements OnInit {
     this.auth.logout(); // Clear token when login page loads
   }
 
-  // Getter methods to access form controls easily in template
-  get username() {
-    return this.loginForm.get('username');
+  get username() { return this.loginForm.get('username'); }
+  get password() { return this.loginForm.get('password'); }
+
+  fillDemoUser() {
+    this.loginForm.patchValue({ username: 'user', password: 'user123' });
   }
 
-  get password() {
-    return this.loginForm.get('password');
+  fillDemoAdmin() {
+    this.loginForm.patchValue({ username: 'admin', password: 'admin123' });
   }
 
   onSubmit() {
     this.submitted = true;
+    if (this.loginForm.invalid) return;
 
-    if (this.loginForm.invalid) {
-      return; // Stop if form is invalid
-    }
-
+    this.loading = true;
     this.auth.login(this.loginForm.value).subscribe({
       next: (res) => {
+        this.loading = false;
         if (res && res.data) {
-          this.auth.saveToken(res.data); // Save token from response
+          // Save both token and username for dashboards
+          const username = this.loginForm.value.username; // from form
+          this.auth.saveAuthData(res.data, username);
+
           this.redirectBasedOnRole();
         } else {
           alert('No token received from server.');
         }
       },
-      error: () => alert('Login failed')
+      error: () => {
+        this.loading = false;
+        alert('Login failed. Backend may take a few seconds to respond.');
+      }
     });
   }
 
   redirectBasedOnRole() {
     const role = this.auth.getUserRole();
-
     if (role === 'ROLE_ADMIN') {
       this.router.navigate(['/admin-dashboard']);
     } else if (role === 'ROLE_USER') {

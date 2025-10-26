@@ -1,8 +1,15 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-4">
+
       <h3 class="text-center mb-4">Login</h3>
 
+      <!-- Backend loading message -->
+      <div *ngIf="loading" class="alert alert-info text-center">
+        Connecting to backend… please wait a few seconds.
+      </div>
+
+      <!-- Login form -->
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="mb-3">
           <label>Username</label>
@@ -23,13 +30,32 @@
         <button class="btn btn-primary w-100" type="submit">Login</button>
       </form>
 
- <button
-  class="btn btn-outline-danger w-100 mt-3"
-  (click)="router.navigate(['/register-user'])"
-  type="button"
->
-  Register User
-</button>
+      <!-- Demo login buttons -->
+      <button
+        class="btn btn-outline-success w-100 mt-2"
+        type="button"
+        (click)="fillDemoUser()"
+      >
+        Login as Demo User
+      </button>
+
+      <button
+        class="btn btn-outline-warning w-100 mt-2"
+        type="button"
+        (click)="fillDemoAdmin()"
+      >
+        Login as Demo Admin
+      </button>
+
+      <!-- Register navigation -->
+      <button
+        class="btn btn-outline-danger w-100 mt-3"
+        (click)="router.navigate(['/register-user'])"
+        type="button"
+      >
+        Register User
+      </button>
+
     </div>
   </div>
 </div>
